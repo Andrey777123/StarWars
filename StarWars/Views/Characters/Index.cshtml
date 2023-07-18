@@ -1,0 +1,60 @@
+﻿@using StarWars.Models
+@model IndexViewModel
+
+@{
+    ViewData["Title"] = "Каталог";
+    string hasPreviousPage = Model.PageViewModel.HasPreviousPage ? "" : "disabled";
+    string hasNextPage = Model.PageViewModel.HasNextPage ? "" : "disabled";
+}
+
+<h1>Персонажи</h1>
+
+<style>
+    @@font-face {
+        font-family: 'FontAwesome';
+        src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2') format('woff2'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff') format('woff'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal
+    }
+
+    .glyphicon {
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale
+    }
+
+    .glyphicon-chevron-right:before {
+        content: "\f054";
+    }
+
+    .glyphicon-chevron-left:before {
+        content: "\f053";
+    }
+</style>
+
+<table class="table">
+    <tr><th>Имя</th><th>Планета</th><th>Раса</th><th></th><th></th></tr>
+    @foreach (var character in Model.Characters)
+    {
+        <tr>
+            <td>@character.Name</td><td>@character.Planet</td><td>@character.Race</td><td>
+            <a href="Characters/CheckInDetail/@character.Id">Подробно</a></td>
+            <td><a href="Characters/View/@character.Id">Редактировать</a></td>
+        </tr>
+    }
+</table>
+
+<a asp-action="Index"
+asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+class="btn btn-outline-dark @hasPreviousPage">
+< Назад
+</a>
+
+<a asp-action="Index"
+asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+class="btn btn-outline-dark @hasNextPage">
+Вперед >
+</a>

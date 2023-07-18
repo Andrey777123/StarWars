@@ -1,0 +1,114 @@
+﻿@model StarWars.Models.UpdateCharacterViewModel
+
+@{
+}
+
+<h1>@Model.Name</h1>
+<link rel="stylesheet" type="text/css" href="~/css/virtual-select.min.css">
+
+<form method="post">
+    <div class="row">
+        <div class="col-md-4">
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label"><b>Имя (в оригинале)</b></label>
+                <div class="col-sm-4">
+                    <input type="text"  readonly class="form-control-plaintext" value="@Model.OriginalName">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label"><b>Дата рождения</b></label>
+                <div class="col-sm-4">
+                    <input type="text" readonly class="form-control-plaintext" 
+                    value="@Model.DateOfBirth.ToString("dd.MM.yyyy")">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label"><b>Планета</b></label>
+                <div class="col-sm-4">
+                    <input type="text"  readonly class="form-control-plaintext" value="@Model.Planet">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label"><b>Пол</b></label>
+                <div class="col-sm-4">
+                    <input type="text"  readonly class="form-control-plaintext" value="@Model.Sex">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label"><b>Раса</b></label>
+                <div class="col-sm-4">
+                    <input type="text" readonly class="form-control-plaintext" value="@Model.Race">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label"><b>Рост(см)</b></label>
+                <div class="col-sm-4">
+                    <input type="text" readonly class="form-control-plaintext" value="@Model.Height">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label"><b>Цвет волос</b></label>
+                <div class="col-sm-4">
+                    <input type="text" readonly class="form-control-plaintext" value="@Model.HairColor">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label"><b>Цвет глаз</b></label>
+                <div class="col-sm-4">
+                    <input type="text" readonly class="form-control-plaintext" value="@Model.EyeColor">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="films">
+                <label >Фильмы</label><br>
+                <select id="multipleSelect" disabled multiple name="native-select" placeholder=" "
+                        data-search="false" data-silent-initial-value-set="true">
+                    <option value="A">Империя наносит ответный удар</option>
+                    <option value="B">Возвращение джедая</option>
+                    <option value="C">Эпизод I: Призрачная угроза</option>
+                    <option value="D">Эпизод III: Месть ситхов</option>
+                    <option value="E">Пробуждение силы</option>
+                    <option value="F">Последний джедай</option>
+                    <option value="G">Звездные войны: Возвышение Скайуокера</option>
+                </select>
+
+                <script type="text/javascript" src="~/js/virtual-select.min.js"></script>
+                <script type="text/javascript">
+                    VirtualSelect.init({
+                        ele: '#multipleSelect',
+                        allOptionsSelectedText: 'Выбраны все',
+                        selectAllText: 'Выбрать все',
+                        optionSelectedText: 'фильм выбран',
+                        optionsSelectedText: 'фильмов выбрано'
+                    });
+                </script>
+            </div>
+
+        </div>
+
+        <div class="form-group" style="padding-top: 40px;">
+            <textarea class="form-control" rows="5" disabled name="text">@Model.Description</textarea>
+        </div>
+
+        <div style="text-align: right; padding-top: 40px;">
+            <button type="submit" class="btn btn-secondary" asp-action="Back" asp-controller="Characters">Назад</button>
+        </div>
+    </div>
+</form>
+

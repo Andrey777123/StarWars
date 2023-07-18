@@ -1,0 +1,117 @@
+﻿@model StarWars.Models.UpdateCharacterViewModel
+
+@{
+}
+
+<h1> Редактирование персонажа</h1>
+
+<link rel="stylesheet" type="text/css" href="~/css/virtual-select.min.css">
+
+<div class="container py-lg-4">
+    <div class="row">
+        <div class="col-lg-12 mx-auto">
+            <form method="post" action="View">
+                <div class="form-group row">
+                    <div class="col-lg-6">
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Id</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" asp-for="Id" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Имя персонажа</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" asp-for="Name" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Имя(в оригинале)</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" asp-for="OriginalName" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Дата рождения</label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" asp-for="DateOfBirth" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Планета</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" asp-for="Planet" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Пол</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" asp-for="Sex" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Раса</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" asp-for="Race" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Рост(см)</label>
+                            <div class="col-sm-10">
+                                <input type="number" min="0" step="1" class="form-control" asp-for="Height" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Цвет волос</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" asp-for="HairColor" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Цвет глаз</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" asp-for="EyeColor" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="">Описание</label>
+                        <textarea class="form-control"  asp-for= "Description" rows="4"></textarea>
+                        <div class="films">
+                            <label style="padding: 20px 0px 20px 0px" >Фильмы</label><br>
+                            <select id="multipleSelect" disabled multiple name="native-select" placeholder=" "
+                                    data-search="false" data-silent-initial-value-set="true">
+                                <option value="A">Империя наносит ответный удар</option>
+                                <option value="B">Возвращение джедая</option>
+                                <option value="C">Эпизод I: Призрачная угроза</option>
+                                <option value="D">Эпизод III: Месть ситхов</option>
+                                <option value="E">Пробуждение силы</option>
+                                <option value="F">Последний джедай</option>
+                                <option value="G">Звездные войны: Возвышение Скайуокера</option>
+                            </select>
+
+                            <script type="text/javascript" src="~/js/virtual-select.min.js"></script>
+                            <script type="text/javascript">
+                                VirtualSelect.init({
+                                    ele: '#multipleSelect',
+                                    allOptionsSelectedText: 'Выбраны все',
+                                    selectAllText: 'Выбрать все',
+                                    optionSelectedText: 'фильм выбран',
+                                    optionsSelectedText: 'фильмов выбрано'
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div style="text-align: right;">
+                    <button type="reset" class="btn btn-secondary">Сбросить</button>
+                    <button type="submit" class="btn btn-danger" asp-action="Delete" asp-controller="Characters">Удалить</button>
+                    <button type="submit" class="btn btn-primary" asp-action="Update" asp-controller="Characters">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
